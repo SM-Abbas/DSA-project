@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Travel Planner</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNLrJhOMz6idD05pzfn5lhA-TAw-mAZCU&callback=Function.prototype"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Global Travel Planner</h1>
+            <p>Find the best routes between cities using advanced algorithms</p>
+        </header>
+
+        <main>
+            <div class="search-form">
+                <div class="region-toggle">
+                    <button id="indian-toggle" class="toggle-btn active">India</button>
+                    <button id="global-toggle" class="toggle-btn">Global</button>
+                </div>
+
+                <div class="popular-routes">
+                    <h3>Popular Routes in India</h3>
+                    <div class="route-buttons">
+                        <button class="quick-route">New Delhi to Mumbai</button>
+                        <button class="quick-route">Mumbai to Bangalore</button>
+                        <button class="quick-route">Chennai to Kolkata</button>
+                        <button class="quick-route">Hyderabad to Pune</button>
+                        <button class="quick-route">Jaipur to Ahmedabad</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="origin">Origin City</label>
+                    <div class="autocomplete-container">
+                        <input type="text" id="origin" placeholder="Type to search for a city" autocomplete="off">
+                        <div id="origin-autocomplete" class="autocomplete-results" style="display: none;"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="destination">Destination City</label>
+                    <div class="autocomplete-container">
+                        <input type="text" id="destination" placeholder="Type to search for a city" autocomplete="off">
+                        <div id="destination-autocomplete" class="autocomplete-results" style="display: none;"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Route Preference</label>
+                    <div class="radio-group">
+                        <input type="radio" id="fastest" name="preference" value="fastest" checked>
+                        <label for="fastest">Fastest Route</label>
+                        
+                        <input type="radio" id="cheapest" name="preference" value="cheapest">
+                        <label for="cheapest">Cheapest Route</label>
+                    </div>
+                </div>
+
+                <button id="findRoute">Find Route</button>
+                
+                <div id="loading-indicator" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Calculating routes...</p>
+                </div>
+            </div>
+
+            <div class="results" id="results">
+                <h2>Route Results</h2>
+                <div id="route-details"></div>
+                
+                <div class="algorithm-comparison">
+                    <h2>Algorithm Comparison</h2>
+                    <div class="comparison-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>Dijkstra's Algorithm</th>
+                                    <th>A* Algorithm</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Nodes Visited</td>
+                                    <td id="dijkstra-nodes">0</td>
+                                    <td id="astar-nodes">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Computation Time (ms)</td>
+                                    <td id="dijkstra-time">0</td>
+                                    <td id="astar-time">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Distance (km)</td>
+                                    <td id="dijkstra-distance">0</td>
+                                    <td id="astar-distance">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Cost (₹)</td>
+                                    <td id="dijkstra-cost">0</td>
+                                    <td id="astar-cost">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Travel Time (hours)</td>
+                                    <td id="dijkstra-travel-time">0</td>
+                                    <td id="astar-travel-time">0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <p>Compare how Dijkstra's algorithm and A* algorithm find routes between the same cities.</p>
+                    
+                    <div class="maps-container">
+                        <div class="map-wrapper">
+                            <h3>Dijkstra's Algorithm</h3>
+                            <div id="dijkstra-map" class="map"></div>
+                        </div>
+                        
+                        <div class="map-wrapper">
+                            <h3>A* Algorithm</h3>
+                            <div id="astar-map" class="map"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by Dijkstra's Algorithm and A* Algorithm | &copy; 2023 Global Travel Planner</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
